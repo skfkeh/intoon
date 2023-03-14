@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <!-- Body -->
+  <body>
+
+    <!-- Page wrapper for sticky footer -->
+    <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+    <main class="page-wrapper">
+
+      <!-- Page content -->
+      <section class="container mt-5 mb-lg-5 pt-lg-5 pb-5">
+
+        <!-- Page title + Layout switcher + Search form -->
+        <div class="row align-items-end gy-3 mb-4 pb-lg-3 pb-1">
+          <div class="col-lg-5 col-md-4">
+            <h1 class="mb-2">Lounge</h1>
+          </div>
+<!--          카테고리 추가할 때 주석 풀면 됨-->
+<!--          <div class="col-lg-7 col-md-8">-->
+<!--            <div class="row gy-2">-->
+<!--              <div class="col-lg-5 col-sm-6">-->
+<!--                <div class="d-flex align-items-center">-->
+<!--                  <select class="form-select">-->
+<!--                    <option>All categories</option>-->
+<!--                    <option value="style1">style1</option>-->
+<!--                    <option value="style2">style2</option>-->
+<!--                    <option value="style3">style3</option>-->
+<!--                    <option value="style4">style4</option>-->
+<!--                    <option value="style5">style5</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+
+        <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                <img src="/static/img/cat2.jpg" class="card-img-top" alt="Image">
+              </div>
+            </article>
+          </div>
+
+          {% if lounge_list %}
+          {% for key, value in lounge_list.items %}
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="/portfolio/content/detail/{{value}}" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                  <img src="{{key}}" class="card-img-top" alt="Image">
+              </div>
+            </article>
+          </div>
+          {% endfor %}
+          No Data
+          {% endif %}
+        </div>
+
+        <!-- Pagination -->
+<!--        <nav aria-label="Page navigation example">-->
+<!--          <ul class="pagination justify-content-center pt-lg-3 pt-1">-->
+<!--            <li class="page-item">-->
+<!--              <a href="#" class="page-link">-->
+<!--                <i class="bx bx-chevron-left mx-n1"></i>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="page-item disabled d-sm-none">-->
+<!--              <span class="page-link text-body">2 / 4</span>-->
+<!--            </li>-->
+<!--            <li class="page-item d-none d-sm-block">-->
+<!--              <a href="#" class="page-link">1</a>-->
+<!--            </li>-->
+<!--            <li class="page-item active d-none d-sm-block" aria-current="page">-->
+<!--              <span class="page-link">-->
+<!--                2-->
+<!--                <span class="visually-hidden">(current)</span>-->
+<!--              </span>-->
+<!--            </li>-->
+<!--            <li class="page-item d-none d-sm-block">-->
+<!--              <a href="#" class="page-link">3</a>-->
+<!--            </li>-->
+<!--            <li class="page-item d-none d-sm-block">-->
+<!--              <a href="#" class="page-link">4</a>-->
+<!--            </li>-->
+<!--            <li class="page-item">-->
+<!--              <a href="#" class="page-link">-->
+<!--                <i class="bx bx-chevron-right mx-n1"></i>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
+      </section>
+    </main>
+
+    <!-- Back to top button -->
+    <a href="#top" class="btn-scroll-top" data-scroll>
+      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+      <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+    </a>
+
+
+    <!-- Vendor Scripts -->
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+    <!-- Main Theme Script -->
+    <script src="assets/js/theme.min.js"></script>
+  </body>
+</html>
+
+{% endblock %}

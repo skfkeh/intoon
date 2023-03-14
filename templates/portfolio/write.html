@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+
+{% extends 'base.html' %}
+{% block content %}
+<head>
+
+</head>
+
+<div class="container pt-5">
+    <h5 class="mt-5 my-3 border-bottom pb-2">Posting</h5>
+
+    <form method="post" id='testform' action="{% url 'portfolio:content_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- 오류표시 Start -->
+        {% include "form_errors.html" %}
+        <!-- 오류표시 End -->
+
+        <!-- Title-->
+        <div class="mb-3">
+            <label for="subject" class="form-label">제목</label>
+            <input type="text" class="form-control" name="subject" id="subject"
+                   value="{{ form.subject.value|default_if_none:'' }}" placeholder="제목을 입력해 주세요" required>
+        </div>
+        <!--Writer -->
+        <div class="mb-3" style="display:none">
+            <label for="username" class="form-label">작성자</label>
+            <input type="text" class="form-control" name="username" id="username"
+                   value="{{ user.username }}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">입력할 내용</label>
+            <textarea placeholder="텍스트를 입력해 주세요" class="form-control" name="content" id="content" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="input_img" class="form-label">이미지 선택</label><br>
+            <input type="file" id="input_img" name="input_img" accept="image/png, image/jpeg">
+        </div>
+        <!--        <button type="submit" onclick="location.ref='https://192.168.0.27:8000/portfolio/loading3'" class="btn btn-primary" style="margin:auto, display:block">Write</button>-->
+
+        <button type="submit" class="btn btn-primary" style="margin:auto, display:block">Create</button>
+        <br>
+    </form>
+
+</div>
+
+
+
+<script>
+    (function (win, doc) {
+    'use strict';
+    if (!doc.querySelectorAll || !win.addEventListener) {
+        // doesn't cut the mustard.
+        return;
+    }
+    var forms = doc.querySelectorAll('form[method="post"]'),
+        formcount = forms.length,
+        i,
+        submitting = false,
+        checkForm = function (ev) {
+            if (submitting) {
+                ev.preventDefault();
+            } else {
+                submitting = true;
+                this.appendChild(doc.createElement('progress'));
+            }
+        };
+    for (i = 0; i < formcount; i = i + 1) {
+        forms[i].addEventListener('submit', checkForm, false);
+    }
+}(this, this.document));
+
+</script>
+{% endblock %}

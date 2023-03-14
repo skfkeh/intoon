@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Profile -->
+<!-- Testimonials (Slider) -->
+<section class="container pb-5 mb-2 mb-md-4 mb-xl-5">
+  <div class="row">
+  <!-- Photo & Email -->
+  <div class="col-md-5 mb-4 mb-md-0">
+    <div class="card justify-content-center bg-light h-100 p-4 p-lg-5">
+        <div class="card card-body card-hover bg-light border-0 text-center mx-2">
+            <img src="/static/img/team/09.jpg" class="d-block rounded-circle mx-auto mb-3" width="162" alt="Ralph Edwards">
+            <h5 class="fw-medium fs-lg mb-1">{{ user.username }}</h5>
+            <p class="fs-sm mb-3">{{ user.email }}</p>
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
+                  <i class="bx bxl-facebook"></i>
+                </a>
+                <a href="#" class="btn btn-icon btn-outline-secondary btn-linkedin btn-sm me-2">
+                  <i class="bx bxl-linkedin"></i>
+                </a>
+                <a href="#" class="btn btn-icon btn-outline-secondary btn-twitter btn-sm">
+                  <i class="bx bxl-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Detail -->
+  <div class="col-md-7">
+    <div class="card border-0 shadow-sm p-4 p-xxl-5">
+
+      <!-- Slider prev/next buttons + Quotation mark -->
+      <div class="d-flex justify-content-between pb-4 mb-2">
+        <span class="btn btn-icon btn-primary btn-lg shadow-primary pe-none">
+          <i class="bx bxs-quote-left"></i>
+        </span>
+        <div class="d-flex">
+          <button type="button" id="prev" class="btn btn-prev btn-icon btn-sm me-2">
+            <i class="bx bx-chevron-left"></i>
+          </button>
+          <button type="button" id="next" class="btn btn-next btn-icon btn-sm ms-2">
+            <i class="bx bx-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Slider -->
+      <div class="swiper mx-0 mb-md-n2 mb-xxl-n3" data-swiper-options='{
+          "spaceBetween": 24,
+          "loop": true,
+          "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+          },
+          "navigation": {
+            "prevEl": "#prev",
+            "nextEl": "#next"
+          }
+        }'>
+        <div class="swiper-wrapper">
+          <!-- Item -->
+          <div class="swiper-slide h-auto" data-swiper-tab="#author-1">
+            <figure class="card h-100 position-relative border-0 bg-transparent">
+              <blockquote class="card-body p-0 mb-0" id="detail01">
+                <p class="fs-lg mb-0"> {{ user.profile_msg1 }} </p>
+
+              </blockquote>
+              <figcaption class="card-footer border-0 d-flex align-items-center w-100 pb-2">
+                <img src="/static/img/avatar/05.jpg" width="48" class="rounded-circle" alt="Ralph Edwards">
+                <div class="ps-3">
+                  <h5 class="fw-semibold lh-base mb-0">Admin</h5>
+                  <span class="fs-sm text-muted">Head of Marketing at Lorem Company</span>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="swiper-slide h-auto" data-swiper-tab="#author-1">
+            <figure class="card h-100 position-relative border-0 bg-transparent">
+              <blockquote class="card-body p-0 mb-0" id="detail02">
+                <p class="fs-lg mb-0"> {{ user.profile_msg2 }} </p>
+
+              </blockquote>
+              <figcaption class="card-footer border-0 d-flex align-items-center w-100 pb-2">
+                <img src="/static/img/avatar/05.jpg" width="48" class="rounded-circle" alt="Ralph Edwards">
+                <div class="ps-3">
+                  <h5 class="fw-semibold lh-base mb-0">Mr.Watson</h5>
+                  <span class="fs-sm text-muted">Head of Marketing at Lorem Company</span>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+<!--          &lt;!&ndash; Pagination (bullets) &ndash;&gt;-->
+<!--          <div class="swiper-pagination position-relative pt-3 mt-4"></div>-->
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+  <!-- Write Button -->
+  <div class="col position-relative mb-4 mb-lg-5">
+    <div class="position-relative">
+      <a href="{% url 'portfolio:content_form' %}" class="stretched-link">
+        <img src="/static/img/landing/intro/landings/placeholder.jpg" class="b-block border rounded-3 shadow-sm" alt="Placeholder">
+        <div class="position-absolute" style="top: 38.4%; padding-left: 15.38%; padding-right: 15.38%;">
+          <h3 class="h5 my-n3">
+              <span class="nav-link justify-content-center fw-bold pe-none p-0">글쓰기</span>
+          </h3>
+          <img src="/static/img/landing/intro/landings/wireframe.svg" class="placeholder placeholder-wave bg-transparent opacity-80" alt="">
+        </div>
+      </a>
+    </div>
+  </div>
+
+  {% if content_list %}
+  {% for content in content_list %}
+
+  <div class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+    <img src="{{content.content_img01}}" class="b-block border rounded-3 shadow-sm" alt="Medical">
+    <h3 class="h5 mt-4 mb-3 mb-lg-0">
+<!--      <a href="landing-medical.html" class="stretched-link">{{ content.subject }}</a>-->
+            <a href="{% url 'portfolio:content_detail' content.id %}" class="stretched-link">{{content.content_img01}}</a>
+          {{content.content_num}}/{{content.subject}}
+    </h3>
+  </div>
+
+  {% endfor %}
+  {% else %}
+  <div>No Content</div>
+  {% endif %}
+</div>
+
+{% endblock %}

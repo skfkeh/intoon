@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+
+{% extends "base.html" %}
+{% block content %}
+<!-- Profile -->
+<!-- Testimonials (Slider) -->
+{% load portfolio_filter %}
+
+<section class="container pb-5 mb-2 mb-md-4 mb-xl-5">
+    <div class="row">
+        <!-- Photo & Email -->
+        <div class="col-md-5 mb-4 mb-md-0">
+            <div class="card justify-content-center bg-light h-100 p-4 p-lg-5">
+                <div class="card card-body card-hover card-center bg-light border-0 text-center mx-2">
+                    <img src="/static/img/team/09.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
+                         alt="Ralph Edwards">
+                    <h5 class="fw-medium fs-lg mb-1">{{ user.username }}</h5>
+                    <p class="fs-sm mb-3">{{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail -->
+        <div class="col-md-7">
+            <div class="card border-0 shadow-sm p-4 p-xxl-5" style="height:100%">
+
+                <!-- Slider prev/next buttons + Quotation mark -->
+                <div class="d-flex justify-content-between pb-4 mb-2">
+        <span class="btn btn-icon btn-primary btn-lg shadow-primary pe-none">
+          <i class="bx bxs-quote-left"></i>
+        </span>
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="btn btn-icon btn-outline-secondary btn-facebook btn-sm me-2">
+                            <i class="bx bxl-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-icon btn-outline-secondary btn-linkedin btn-sm me-2">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
+                        <a href="#" class="btn btn-icon btn-outline-secondary btn-twitter btn-sm">
+                            <i class="bx bxl-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="swiper mt-n3 mt-md-0 pt-md-4 pt-lg-5 mx-n2" data-swiper-options='{
+    "slidesPerView": 1,
+    "spaceBetween": 8,
+    "pagination": {
+    "el": ".swiper-pagination",
+    "clickable": true
+    },
+    "navigation": {
+    "prevEl": "#prev-news",
+    "nextEl": "#next-news"
+    },
+    "breakpoints": {
+    "500": {
+        "slidesPerView": 2
+    },
+    "700": {
+        "slidesPerView": 2
+    },
+    "1000": {
+        "slidesPerView": 2
+    }
+    }
+}'>
+                    <div class="swiper-wrapper">
+
+                        <!-- 게시글 수 -->
+                        <div class="swiper-slide h-auto pb-3">
+                            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+                                <!--               check                 -->
+                                <h3 class="display-4 text_primary mb-1 text-center">{{ content_list.count }}</h3>
+                                <div class="card-body fs-lg fw-semibold text-center">게시글 수</div>
+                            </div>
+                        </div>
+
+                        <!-- 이미지 수 -->
+<!--                        <div class="swiper-slide h-auto pb-3">-->
+<!--                            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">-->
+<!--                                &lt;!&ndash;               check                 &ndash;&gt;-->
+<!--                                <h3 class="display-4 text_primary mb-1 text-center">{{ content.content_img.count }}</h3>-->
+<!--                                <div class="card-body fs-lg fw-semibold text-center">이미지 수</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                        <!-- 글쓰기 -->
+                        <div class="swiper-slide h-auto pb-3">
+                            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+                                <a href="{% url 'portfolio:write' %}" class="stretched-link">
+                                    <img src="/static/img/idea.svg" width="48" alt="Bulb icon"
+                                         class="d-block mb-4 mx-auto" alt="">
+                                    <div class="position-relative">
+                                        <div class="card-body fs-lg fw-semibold text-center">글쓰기</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination (bullets) -->
+                    <div class="swiper-pagination position-relative bottom-0 mt-2"></div>
+                </div>
+            </div>
+
+</section>
+
+<section class="container pb-3 mb-2 mb-md-2 mb-xl-5">
+    <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
+
+        {% if content_list %}
+        {% for imsi in content_list %}
+        <div class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
+                {% if imsi.content_img %}
+                
+                <img src="{{imsi.content_img|slice:"2:44"}}" onerror="this.src='{{imsi.content_img|slice:"2:43"}}'" style="width:100%"/>
+                {% for i in imsi.content_img|test %}
+                
+                
+                <!-- <img src="{{ i }}" alt="..."/> -->
+                <!-- <img src="{{imsi.content_img|test}}" alt="..."/>  -->
+                {% endfor %}
+                {% else %}
+                No Image
+                {% endif %}
+
+
+                <script src="/static/js/imageview.js"></script>
+            <h3 class="h5 mt-4 mb-3 mb-lg-0" style="text-align:center">
+                <!--      <a href="landing-medical.html" class="stretched-link">{{ content.subject }}</a>-->
+                <a href="{% url 'portfolio:content_detail' imsi.id %}" class="stretched-link"></a>
+                {{imsi.content_num}}  <!-- 삭제 필요 -->
+                {{imsi.subject}}
+            </h3>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <div>No Content</div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+

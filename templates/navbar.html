@@ -1,0 +1,76 @@
+<!-- Navbar -->
+<!-- Remove "fixed-top" class to make navigation bar scrollable with the page -->
+<header class="header navbar navbar-expand-lg bg-light shadow-sm fixed-top">
+    <div class="container px-3">
+        <a href="/" class="navbar-brand pe-3">
+            <img src="/static/img/logo.png" width="70" alt="Burger">
+        </a>
+
+        <div id="navbarNav" class="offcanvas offcanvas-end">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"
+                           aria-current="page">My Page</a>
+                        <div class="dropdown-menu p-0">
+                            <div class="d-lg-flex">
+                                <div class="mega-dropdown-column bg-position-center bg-repeat-0 bg-size-cover rounded-3 rounded-end-0"
+                                     style="background-image: url(static/img/landings.jpg); margin: -1px;"></div>
+                                <div class="mega-dropdown-column pt-lg-3 pb-lg-4">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="/portfolio/mypage/" class="dropdown-item">My Page</a></li>
+                                        <li><a href="/portfolio/content_form/" class="dropdown-item">Create Image</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="/portfolio/lounge_test/" class="nav-link">Lounge</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="offcanvas-header border-top">
+                {% if user.is_authenticated %}
+                <a href="{% url 'common:logout' %}" class="btn btn-primary w-100" rel="noopener">
+                    Log out
+                </a>
+                {% else %}
+                <a href="{% url 'common:login' %}" class="btn btn-primary w-100" rel="noopener">
+                    Log In
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+            <input type="checkbox" class="form-check-input" id="theme-mode">
+            <label class="form-check-label d-none d-sm-block" for="theme-mode">Light</label>
+            <label class="form-check-label d-none d-sm-block" for="theme-mode">Dark</label>
+        </div>
+        <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'common:logout' %}" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
+           rel="noopener">
+            Log out
+        </a>
+        {% else %}
+        <a href="{% url 'common:login' %}" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
+           rel="noopener">
+            Log In
+        </a>
+        {% endif %}
+    </div>
+</header>
