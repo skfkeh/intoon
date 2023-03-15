@@ -13,86 +13,31 @@
 
 
 <!--원래 user의 id를 통해 조회해 오지만, Mongo에서 쿼리를 통해 가져와야 할 것 같음-->
-
+{{hot_id_list}}
 <!-- Portfolio list -->
 <section class="container pb-2 pb-lg-3">
     <h2 class="h1 text-center pt-1 pt-md-3 pt-lg-4 pb-3 pb-md-4 mb-0 mb-lg-3">Hot TOONS</h2>
+    {% if hot_final_dict %}
+    {% for hot_id,hot_query,hot_toon_img in hot_final_dict %}
     <div class="row pb-5 mb-md-4 mb-lg-5" id="hot">
-        <div class="rellax col-md-6 pb-1 mb-3 pb-md-0 mb-md-0" data-rellax-percentage="0.5" data-rellax-speed="0.8"
+        <div class="rellax col-md-5 pb-1 mb-3 pb-md-0 mb-md-0" data-rellax-percentage="0.5" data-rellax-speed="0.8"
              data-disable-parallax-down="md">
             <a href="portfolio-single-project.html">
-                <img src="{{content.content_img01}}" class="rounded-3" width="600" alt="DB Query 필요"> <!--이미지-->
+                <img src="{{hot_toon_img}}" class="rounded-3" width="600" alt="{{hot_query.content_img}}" style="width: 350px"> <!--이미지-->
             </a>
         </div>
         <div class="rellax col-md-6" data-rellax-percentage="0.5" data-rellax-speed="-0.6"
              data-disable-parallax-down="md">
             <div class="ps-md-4 ms-md-2">
-                <div class="fs-sm text-muted mb-1">게시물 작성일자</div>
-                <h2 class="h3">게시물 제목</h2>
-                <a href="#" class="d-table badge bg-faded-primary text-primary fs-sm mb-3">작성자[링크]</a>
-                <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">게시물 내용</p>
-                <a href="portfolio-single-project.html" class="btn btn-outline-primary">게시물 링크 매핑</a>
+                <div class="fs-sm text-muted mb-1">{{hot_query.create_date}}</div>
+                <h2 class="h3">{{hot_query.subject}}</h2>
+                <a href="#" class="d-table badge bg-faded-primary text-primary fs-sm mb-3">{{hot_query.username}}</a>
+                <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">{{hot_query.content}}</p>
+                <a href="/portfolio/content/detail/{{hot_id}}" class="btn btn-outline-primary">게시물 링크 매핑</a>
             </div>
         </div>
     </div>
-
-    <!-- Item -->
-    <div class="row pb-5 mb-md-4 mb-lg-5">
-        <div class="rellax col-md-6 order-md-2 pb-1 mb-3 pb-md-0 mb-md-0" data-rellax-percentage="0.5"
-             data-rellax-speed="0.8" data-disable-parallax-down="md">
-            <a href="portfolio-single-project.html" class="float-md-end">
-                <img src="{{content.content_img01}}" class="rounded-3" width="600" alt="DB Query 필요">
-            </a>
-        </div>
-        <div class="rellax col-md-6 order-md-1 pt-md-4 pt-lg-5" data-rellax-percentage="0.5" data-rellax-speed="-0.6"
-             data-disable-parallax-down="md">
-            <div class="ps-md-4 ms-md-2">
-                <div class="fs-sm text-muted mb-1">게시물 작성일자</div>
-                <h2 class="h3">게시물 제목</h2>
-                <a href="#" class="d-table badge bg-faded-primary text-primary fs-sm mb-3">작성자[링크]</a>
-                <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">게시물 내용</p>
-                <a href="portfolio-single-project.html" class="btn btn-outline-primary">게시물 링크 매핑</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Item -->
-    <div class="row pb-5 mb-md-4 mb-lg-5">
-        <div class="rellax col-md-6 pb-1 mb-3 pb-md-0 mb-md-0" data-rellax-percentage="0.5" data-rellax-speed="0.8"
-             data-disable-parallax-down="md">
-            <a href="portfolio-single-project.html">
-                <img src="{{content.content_img01}}" class="rounded-3" width="600" alt="DB Query 필요">
-            </a>
-        </div>
-        <div class="rellax col-md-6 pt-md-4 pt-lg-5" data-rellax-percentage="0.5" data-rellax-speed="-0.6"
-             data-disable-parallax-down="md">
-            <div class="ps-md-4 ms-md-2">
-                <div class="fs-sm text-muted mb-1">게시물 작성일자</div>
-                <h2 class="h3">게시물 제목</h2>
-                <a href="#" class="d-table badge bg-faded-primary text-primary fs-sm mb-3">작성자[링크]</a>
-                <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">게시물 내용</p>
-                <a href="portfolio-single-project.html" class="btn btn-outline-primary">게시물 링크 매핑</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Item -->
-    <div class="row pb-5 mb-md-4 mb-lg-5">
-        <div class="rellax col-md-6 order-md-2 pb-1 mb-3 pb-md-0 mb-md-0" data-rellax-percentage="0.5"
-             data-rellax-speed="0.8" data-disable-parallax-down="md">
-            <a href="portfolio-single-project.html" class="float-md-end">
-                <img src="{{content.content_img01}}" class="rounded-3" width="600" alt="DB Query 필요">
-            </a>
-        </div>
-        <div class="rellax col-md-6 order-md-1 pt-md-4 pt-lg-5" data-rellax-percentage="0.5" data-rellax-speed="-0.6"
-             data-disable-parallax-down="md">
-            <div class="ps-md-4 ms-md-2">
-                <div class="fs-sm text-muted mb-1">게시물 작성일자</div>
-                <h2 class="h3">게시물 제목</h2>
-                <a href="#" class="d-table badge bg-faded-primary text-primary fs-sm mb-3">작성자[링크]</a>
-                <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">게시물 내용</p>
-                <a href="portfolio-single-project.html" class="btn btn-outline-primary">게시물 링크 매핑</a>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
+    No Data
+    {% endif %}
 </section>

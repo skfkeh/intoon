@@ -9,6 +9,10 @@ def sub(value, arg):
 
 @register.filter(name="test")
 def str_to_list(value):
-    print("----------------template filter-------------------")
     # ast.literal_eval(value)
     return ast.literal_eval(value)
+
+@register.filter(name="slicing_img")
+def slicing_img(value):
+
+    return value.slice(',')[0][2:]

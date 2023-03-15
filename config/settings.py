@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-v!id%avl)1)x@$pp!ttcpx+hx%mkvp9#_=-seni8^cdfb54)$v
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', '192.168.0.27', '192.168.0.43']
+ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1']#, '192.168.0.27', '192.168.0.43']
 # ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', '192.168.50.91']
 
 
@@ -143,6 +143,6 @@ LOGOUT_REDIRECT_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-LOCALHOST = '192.168.0.27:8000'
+# LOCALHOST = '192.168.0.27:8000'
 
 AUTH_USER_MODEL = 'common.User'

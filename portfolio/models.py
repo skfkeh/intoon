@@ -12,7 +12,7 @@ class Content(models.Model):
     like_count = models.TextField(blank=True, null=True)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(null=True)
-    reco_img = models.TextField(blank=True, null=True)
+
 
 class Answer(models.Model):
     username = models.CharField(max_length=50)
@@ -20,5 +20,5 @@ class Answer(models.Model):
     context = models.TextField()
     create_date = models.DateTimeField()
 
-
-
+# class Like_profile(models.Model):
+#     username = models.CharField(User)
