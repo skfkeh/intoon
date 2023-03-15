@@ -119,27 +119,21 @@
                 </div>
 
 
+<!--                <div>좋아요 수 : {{content.like_count}}</div>-->
 
-                <form action="#" method='POST'>
-                {% csrf_token %}
-                    content :{{content}}<br>
-                    user : {{request.user}}<br>
-                    {{content.liked_count}}
 
-                    {% if user in content.like_users.all %}
-                    {{content.like_users.all}}<br>
-                    {{user}}
-                        <input type="submit" value='좋아요 취소'>
-                    {% else %}
-                        <input type="submit" value='좋아요'>
+<!--                <a href=# class="btn btn-lg btn-outline-secondary">-->
+<!--                    추천-->
+<!--                <span class="badge bg-primary shadow-primary mt-n1 ms-3">{{content.voter.count}}</span>-->
+<!--                </a>-->
+
 <!--                <button class="btn btn-lg btn-outline-secondary">-->
 <!--                    <i class="bx bx-like me-2 lead"></i>-->
 <!--                    Like it-->
 <!--                    <span class="badge bg-primary shadow-primary mt-n1 ms-3">{{ content.like_count.count }} </span>-->
 <!--                </button>-->
 
-                    {% endif %}
-                </form>
+
 
 
 

@@ -71,9 +71,9 @@
 
                         <!-- 게시글 수 -->
                         <div class="swiper-slide h-auto pb-3">
-                            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+                            <div class="card card-hov시er bg-light border-0 animation-on-hover h-100 mx-2">
                                 <!--               check                 -->
-                                <h3 class="display-4 text_primary mb-1 text-center">{{ content_list.count }}</h3>
+                                <h3 class="display-4 text_primary mb-1 text-center">{{content_len}}</h3>
                                 <div class="card-body fs-lg fw-semibold text-center">게시글 수</div>
                             </div>
                         </div>
@@ -112,26 +112,18 @@
     <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
 
         {% if content_list %}
-        {% for imsi in content_list %}
+        {% for key, value in content_list.items %}
         <div class="col card-hover shadow-none bg-none position-relative mb-4 mb-lg-5">
-                {% if imsi.content_img %}
-                
-                <img src="{{imsi.content_img|slice:"2:44"}}" onerror="this.src='{{imsi.content_img|slice:"2:43"}}'" style="width:100%"/>
-                {% for i in imsi.content_img|test %}
-                
-                
-                <!-- <img src="{{ i }}" alt="..."/> -->
-                <!-- <img src="{{imsi.content_img|test}}" alt="..."/>  -->
-                {% endfor %}
-                {% else %}
-                No Image
-                {% endif %}
+            {% if key %}
+            <img src="{{key}}" style="width:100%"/>
+            {% else %}
+            No Image
+            {% endif %}
 
-
-                <script src="/static/js/imageview.js"></script>
+            <script src="/static/js/imageview.js"></script>
             <h3 class="h5 mt-4 mb-3 mb-lg-0" style="text-align:center">
                 <!--      <a href="landing-medical.html" class="stretched-link">{{ content.subject }}</a>-->
-                <a href="{% url 'portfolio:content_detail' imsi.id %}" class="stretched-link"></a>
+                <a href="{% url 'portfolio:content_detail' value %}" class="stretched-link"></a>
                 {{imsi.content_num}}  <!-- 삭제 필요 -->
                 {{imsi.subject}}
             </h3>
