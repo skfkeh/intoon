@@ -13,7 +13,6 @@
 
 
 <!--원래 user의 id를 통해 조회해 오지만, Mongo에서 쿼리를 통해 가져와야 할 것 같음-->
-{{hot_id_list}}
 <!-- Portfolio list -->
 <section class="container pb-2 pb-lg-3">
     <h2 class="h1 text-center pt-1 pt-md-3 pt-lg-4 pb-3 pb-md-4 mb-0 mb-lg-3">Hot TOONS</h2>
@@ -38,6 +37,7 @@
         </div>
     </div>
     {% endfor %}
+    {% else %}
     No Data
     {% endif %}
 </section>

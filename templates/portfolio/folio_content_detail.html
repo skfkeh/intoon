@@ -150,6 +150,8 @@
             </div>
         </div>
 
+        {% if user.is_authenticated %}
+        <!-- 비로그인 시에는 댓글작성 기능을 비활성화한다 -->
         <div class="py-4">
             <form action="{% url 'portfolio:answer_create' content.id %}" method="post">
                 {% csrf_token %}
@@ -163,6 +165,7 @@
                 </div>
             </form>
         </div>
+        {% endif %}
     </section>
 
 

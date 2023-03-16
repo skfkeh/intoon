@@ -37,10 +37,10 @@ def index(request):
     for hot_id in hot_id_list:
         hot_toon = Content.objects.get(id=hot_id)
         hot_toon_img = hot_toon.content_img.split(',')[0][2:-1]
-        print('asdfasdf: ',hot_toon_img,'\n')
+        # print('asdfasdf: ',hot_toon_img,'\n')
         hot_toon_list.append(hot_toon)
         hot_toon_img_list.append(hot_toon_img)
-    print('hot_toon_img_list:',hot_toon_img_list)
+    # print('hot_toon_img_list:',hot_toon_img_list)
     hot_final_dict = zip(hot_id_list,hot_toon_list,hot_toon_img_list)
     hot_final_list = {"hot_final_dict":hot_final_dict}
     return render(request, 'base.html',hot_final_list)
@@ -86,8 +86,11 @@ def write_form(request):
     return render(request, 'portfolio/write.html')
 
 def lounge(request):
-    current_user = User.objects.get(username=request.user)
-    lounge_content = Content.objects.filter(~Q(username=current_user))
+    if request.user.is_authenticated == False:    ## 비로그인 상태에서 라운지 접속하기 위한 세팅
+        lounge_content = Content.objects.filter() ## 모든 게시글을 불러온다
+    else:
+        current_user = User.objects.get(username=request.user)
+        lounge_content = Content.objects.filter(~Q(username=current_user))
 
     lounge_img_list = []
     lounge_link_list = []

@@ -14,5 +14,4 @@ def str_to_list(value):
 
 @register.filter(name="slicing_img")
 def slicing_img(value):
-
     return value.slice(',')[0][2:]
