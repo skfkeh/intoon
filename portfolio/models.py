@@ -6,6 +6,7 @@ class Content(models.Model):
     subject = models.CharField(max_length=200)
     username = models.CharField(max_length=50)
     content = models.TextField()
+    content_for_posting = models.TextField()
     content_num = models.IntegerField(default=1)
     input_img = models.ImageField(upload_to='images/', blank=True, null=True)
     content_img = models.TextField(blank=True, null=True)
@@ -19,6 +20,7 @@ class Answer(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
     context = models.TextField()
     create_date = models.DateTimeField()
+    content_for_posting = models.TextField()
 
 # class Like_profile(models.Model):
 #     username = models.CharField(User)

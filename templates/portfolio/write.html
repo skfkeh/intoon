@@ -30,7 +30,12 @@
                    value="{{ user.username }}" readonly>
         </div>
         <div class="mb-3">
-            <label for="content" class="form-label">입력할 내용</label>
+            <label for="content" class="form-label">게시글 내용</label>
+            <textarea placeholder="텍스트를 입력해 주세요" class="form-control" name="content_for_posting" id="content_for_posting" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="content" class="form-label">모델 입력 내용</label>
             <textarea placeholder="텍스트를 입력해 주세요" class="form-control" name="content" id="content" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
 

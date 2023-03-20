@@ -4,13 +4,14 @@ from portfolio.models import Content, Answer
 class ContentForm(forms.ModelForm):
     class Meta:
         model = Content
-        fields = ['subject', 'username', 'content', 'input_img', 'content_img', 'like_count']
+        fields = ['subject', 'username', 'content', 'input_img', 'content_img', 'like_count','content_for_posting']
         labels = {
             'subject': '제목',
             'username': '작성자',
             'content': '내용',
             'input_img': '입력이미지',
             'content_img': '이미지',
+            'content_for_posting':'게시글 내용'
         }
 
 class AnswerForm(forms.ModelForm):

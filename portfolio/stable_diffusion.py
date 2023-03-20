@@ -278,8 +278,8 @@ class Txt2img:
         prompt_list = prompt.split('.')
         new_path_list = []
         for prompt in prompt_list:
-            prompt = eng_2_kor(prompt)
-            prompt = kor_2_eng(prompt) #+ ',오일 페인팅 스타일'
+            # prompt = eng_2_kor(prompt)
+            # prompt = kor_2_eng(prompt) #+ ',오일 페인팅 스타일'
             data = [batch_size * prompt]
             username_path = outpath #####
             os.makedirs(username_path, exist_ok=True)

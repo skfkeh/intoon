@@ -8,7 +8,9 @@
         <!-- Sign in form -->
         <div class="container d-flex flex-wrap justify-content-center h-100 pt-5">
             <div class="w-100 align-self-end pt-1 pt-md-4 pb-4" style="max-width: 526px;">
-                <h1 class="text-center">BurgerTeam</h1>
+                <h1 class="text-center">
+                    <img class="text-center" src="/static/img/logo.png/" style="width:150px; text-align:center"/>
+                </h1>
                 <form method="post" action="{% url 'common:login' %}" class="needs-validation mb-2">
                     {% csrf_token %}
                     <div class="position-relative mb-4">
@@ -55,7 +57,7 @@
                 <div class="w-100 align-self-end">
                     <p class="nav d-block fs-xs text-center pb-2 mb-0">
                     &copy; All rights reserved. Made by 
-                    <a class="nav-link d-inline-block p-0" href="#" rel="noopener">BurgerTeam</a>
+                    <a class="nav-link d-inline-block p-0" href="#" rel="noopener">IntoonTeam</a>
                     </p>    
                 </div>
             </div>

@@ -13,37 +13,40 @@ from django.db.models import Max
 from django.db.models import Q
 
 pymongo_connect = MongoClient("mongodb://localhost:27017")
-pymongo_db = pymongo_connect["project"]
+pymongo_db = pymongo_connect["intoon"]
 pymongo_col_folio = pymongo_db["portfolio_content"]
 pymongo_col_user = pymongo_db["common_user"]
 
 
 # Create your views here.
 def index(request):
-    answer_object = Answer.objects.filter()
+    try:
+        answer_object = Answer.objects.filter()
 
-    print("len(answer_object):",len(answer_object))
-    test_list = []
-    for object in range(len(answer_object)):
-        test_list.append(answer_object[object].content_id)
-    my_dict = get_occurrence_count(test_list)
-    sorted_dict = sorted(my_dict.items(), key=lambda item: item[1], reverse=True)
-    hot_id_list = []
-    for i in range(4):
-        hot_id_list.append(sorted_dict[:4][i][0])
+        print("len(answer_object):",len(answer_object))
+        test_list = []
+        for object in range(len(answer_object)):
+            test_list.append(answer_object[object].content_id)
+        my_dict = get_occurrence_count(test_list)
+        sorted_dict = sorted(my_dict.items(), key=lambda item: item[1], reverse=True)
+        hot_id_list = []
+        for i in range(4):
+            hot_id_list.append(sorted_dict[:4][i][0])
 
-    hot_toon_list = []
-    hot_toon_img_list=[]
-    for hot_id in hot_id_list:
-        hot_toon = Content.objects.get(id=hot_id)
-        hot_toon_img = hot_toon.content_img.split(',')[0][2:-1]
-        # print('asdfasdf: ',hot_toon_img,'\n')
-        hot_toon_list.append(hot_toon)
-        hot_toon_img_list.append(hot_toon_img)
-    # print('hot_toon_img_list:',hot_toon_img_list)
-    hot_final_dict = zip(hot_id_list,hot_toon_list,hot_toon_img_list)
-    hot_final_list = {"hot_final_dict":hot_final_dict}
-    return render(request, 'base.html',hot_final_list)
+        hot_toon_list = []
+        hot_toon_img_list=[]
+        for hot_id in hot_id_list:
+            hot_toon = Content.objects.get(id=hot_id)
+            hot_toon_img = hot_toon.content_img.split(',')[0][2:-1]
+            # print('asdfasdf: ',hot_toon_img,'\n')
+            hot_toon_list.append(hot_toon)
+            hot_toon_img_list.append(hot_toon_img)
+        # print('hot_toon_img_list:',hot_toon_img_list)
+        hot_final_dict = zip(hot_id_list,hot_toon_list,hot_toon_img_list)
+        hot_final_list = {"hot_final_dict":hot_final_dict}
+        return render(request, 'base.html',hot_final_list)
+    except:
+        return render(request, 'base.html')
 
 def get_occurrence_count(my_list):
   new_list = {}
@@ -70,11 +73,8 @@ def mypage(request):
             index = len(current_content[img].content_img)
         else:
             index = current_content[img].content_img[1:-1].find(',')
-        print("=================")
+        # print("=================")
         content_first_img = current_content[img].content_img[2:index]
-        print("content_first_img:",content_first_img)
-        print("current_content[img].content_num:",current_content[img].content_num)
-        print("id", id)
         content_img_list.append(content_first_img)
         content_link_list.append(current_content[img].content_num)
 
@@ -99,11 +99,12 @@ def lounge(request):
         index = lounge_content[img].content_img[1:-1].find(',')
         content_first_img = lounge_content[img].content_img[2:index]
         lounge_img_list.append(content_first_img)
-        lounge_link_list.append(lounge_content[img].content_num)
+        lounge_link_list.append(lounge_content[img].id)
+        print("lounge_link_list:", lounge_link_list)
 
     context = {"lounge_list": dict(zip(lounge_img_list, lounge_link_list))}
 
-    return render(request, 'portfolio/lounge_test.html', context)
+    return render(request, 'portfolio/lounge.html', context)
 
 def content_detail(request, id):
     content = Content.objects.get(id=id)
@@ -111,6 +112,9 @@ def content_detail(request, id):
     other_content_img = []
     liked_count = []
     total_result = list(pymongo_col_folio.find())
+    print('total_result = ', total_result)
+#     current_content_img = []
+#     current_content_img2 = []
 
     for column in total_result:
         if column['content_img'] is None:
@@ -127,7 +131,7 @@ def content_detail(request, id):
                         pass
                     else:
                         other_content_img.append(current_content_imgs)
-                liked_count.append(column['like_count'])
+#                 liked_count.append(column['like_count'])
 
     # print('other_content_img:',other_content_img)
     # print('len(other_content_img):', len(other_content_img))
@@ -142,11 +146,11 @@ def content_detail(request, id):
     # print(count(other_content_img_20))
 
     total_result = list(pymongo_col_folio.find())
-    # 현재 게시물 이미지 경
+    # 현재 게시물 이미지 경로
     detail_first_img = current_content_img[0]
     # 20개 이미지 경로
     path_list = other_content_img[-20:-1]
-    print(f"path_list:{path_list}")
+    # print(f"path_list:{path_list}")
     recommendation_result = img_recommendation.img_recommendation_func(path_list,detail_first_img)
     reco_link_list = []
     # print(recommendation_result)
@@ -158,7 +162,6 @@ def content_detail(request, id):
     context = {'content': content, 'recommendation_result': recommendation_result, "reco_list": dict(zip(recommendation_result, reco_link_list))}
     return render(request, 'portfolio/folio_content_detail.html', context) #, detail_first_img, path_list)
 
-
 def content_create(request):
     current_user = User.objects.get(username=request.user)
     current_user = str(current_user)
@@ -167,18 +170,22 @@ def content_create(request):
     iter_result = list(pymongo_col_folio.find())
     for i in iter_result:
         max_list.append(i['content_num'])
+    print("max_list:", max_list)
     if request.method == 'POST':
         form = ContentForm(request.POST, request.FILES)
         if form.is_valid():
             # redirect('portfolio:loading3')
             content = form.save(commit=False)
-            content.content_num = int(max_list[-1]) + 1
+            if len(max_list) == 0:
+                content.content_num = 1
+            else:
+                content.content_num = int(max_list[-1]) + 1
             print("-------form---")
             content.create_date = timezone.now()
             content.save()
             input_img = str(os.getcwd()) + "/media/" + str(content.input_img)
             txt = content.content
-
+            # content.content_for_posting =
             if input_img == "/home/dhj9842/venv/mysite/media/":
                 new_path_list = Txt2img.txt2img_func(txt, current_user)
             else:
@@ -220,41 +227,8 @@ def answer_create(request, content_id):
     return render(request, 'portfolio:folio_content_detail', context)
 
 
-# def likes(request, content_id):
-#     try:
-#         if request.user.is_authenticated:
-#             print('00000000000000000000000')
-#             content = get_object_or_404(Content, pk=content_id)
-#             print('11111111111111111')
-#             print(content.like_users)
-#             if content.like_users.filter(pk=request.user.username).exists():
-#                 print('333333333333333333')
-#                 content.like_users.remove(request.user)
-#             else:
-#                 print('444444444444444')
-#                 content.like_users.add(request.user)
-#             return redirect('/portflio/folio_content_detail.html')
-#     except:
-#         return redirect('common:login')
-#
 
 
 
-# def content_reco(request, id):
-#     print('aaaaaa')
-#     model_url = './rec_tf_model'
-#
-#     total_result = list(pymongo_col_folio.find())
-#     other_content_img = []
-#
-#     for column in total_result:
-#         if column['content_img'] is None:
-#             continue
-#         else:
-#             if id != column['id']:
-#                 other_content_img.append(re.sub("'", "", column['content_img'][1:-1]))
-#
-#     path_list = other_content_img[:20]
-#     print('==================')
-#     print(path_list)
-#     recommendation_result = img_recommendation.img_recommendation_func(model_url,path_list)
+
+

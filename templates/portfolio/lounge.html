@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <!-- Body -->
+  <body>
+
+    <!-- Page wrapper for sticky footer -->
+    <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+    <main class="page-wrapper">
+
+      <!-- Page content -->
+      <section class="container mt-5 mb-lg-5 pt-lg-5 pb-5">
+
+        <!-- Page title + Layout switcher + Search form -->
+        <div class="row align-items-end gy-3 mb-4 pb-lg-3 pb-1">
+          <div class="col-lg-5 col-md-4">
+            <h1 class="mb-2">Lounge</h1>
+          </div>
+<!--          카테고리 추가할 때 주석 풀면 됨-->
+<!--          <div class="col-lg-7 col-md-8">-->
+<!--            <div class="row gy-2">-->
+<!--              <div class="col-lg-5 col-sm-6">-->
+<!--                <div class="d-flex align-items-center">-->
+<!--                  <select class="form-select">-->
+<!--                    <option>All categories</option>-->
+<!--                    <option value="style1">style1</option>-->
+<!--                    <option value="style2">style2</option>-->
+<!--                    <option value="style3">style3</option>-->
+<!--                    <option value="style4">style4</option>-->
+<!--                    <option value="style5">style5</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+
+        <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
+          <!-- Item -->
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+<!--                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>-->
+<!--                <img src="/static/img/cat2.jpg" class="card-img-top" alt="Image">-->
+                <div class="accordion" id="faq">
+              <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                <h2 class="accordion-header" id="q1-heading">
+                  <button class="accordion-button shadow-none rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="true" aria-controls="q1">
+                    "Lounge"란 무엇인가요?
+                  </button>
+                </h2>
+                <div id="q1" class="accordion-collapse collapse show" aria-labelledby="q1-heading" data-bs-parent="#faq">
+                  <div class="accordion-body fs-sm pt-0">
+                    <p>#intoon에서 제공해드리는 "Lounge"는 모든 게시글(게시 이미지)를 볼 수 있는 커뮤니티입니다.</p>
+                    <p class="mb-0">다른 tooner의 글과 이미지를 보고 느껴진 내용을 댓글에 작성주세요!!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                <h2 class="accordion-header" id="q2-heading">
+                  <button class="accordion-button shadow-none rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2" aria-expanded="false" aria-controls="q2">
+                    "Lounge"에서는 어떤 것을 할 수 있나요?
+                  </button>
+                </h2>
+                <div id="q2" class="accordion-collapse collapse" aria-labelledby="q2-heading" data-bs-parent="#faq">
+                  <div class="accordion-body fs-sm pt-0">
+                    <p>다른 사람은 어떤 게시글을 작성했고, 어떤 이미지가 create 되었는지 볼 수 있습니다.</p>
+                    <p class="mb-0">댓글이 많을수록 Lobby에 있는 "Hot folio"에 올라갈 수 있으니, 좋아하는 tooner에게 힘을 실어주세요!!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                <h2 class="accordion-header" id="q3-heading">
+                  <button class="accordion-button shadow-none rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="false" aria-controls="q3">
+                    <strong>"Lounge"</strong> 기능을 설명해주세요.
+                  </button>
+                </h2>
+                <div id="q3" class="accordion-collapse collapse" aria-labelledby="q3-heading" data-bs-parent="#faq">
+                  <div class="accordion-body fs-sm pt-0">
+                    <p>다른 사람은 어떤 글과 이미지를 생성했는지 둘러보면서 공감과 유대감을 얻을 수 있습니다.</p>
+                    <p class="mb-0">주기적으로 "Hot folio"에 올라오는 게시글이 되어 "올해의 게시글"이 되어보세요!!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </div>
+            </article>
+          </div>
+
+          {% if lounge_list %}
+          {% for key, value in lounge_list.items %}
+          <div class="col pb-3">
+            <article class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <a href="/portfolio/content/detail/{{value}}" class="position-absolute top-0 start-0 w-100 h-100" aria-label="Read more"></a>
+                  <img src="{{key}}" class="card-img-top" alt="Image">
+              </div>
+            </article>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+
+        <!-- Pagination -->
+<!--        <nav aria-label="Page navigation example">-->
+<!--          <ul class="pagination justify-content-center pt-lg-3 pt-1">-->
+<!--            <li class="page-item">-->
+<!--              <a href="#" class="page-link">-->
+<!--                <i class="bx bx-chevron-left mx-n1"></i>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="page-item disabled d-sm-none">-->
+<!--              <span class="page-link text-body">2 / 4</span>-->
+<!--            </li>-->
+<!--            <li class="page-item d-none d-sm-block">-->
+<!--              <a href="#" class="page-link">1</a>-->
+<!--            </li>-->
+<!--            <li class="page-item active d-none d-sm-block" aria-current="page">-->
+<!--              <span class="page-link">-->
+<!--                2-->
+<!--                <span class="visually-hidden">(current)</span>-->
+<!--              </span>-->
+<!--            </li>-->
+<!--            <li class="page-item d-none d-sm-block">-->
+<!--              <a href="#" class="page-link">3</a>-->
+<!--            </li>-->
+<!--            <li class="page-item d-none d-sm-block">-->
+<!--              <a href="#" class="page-link">4</a>-->
+<!--            </li>-->
+<!--            <li class="page-item">-->
+<!--              <a href="#" class="page-link">-->
+<!--                <i class="bx bx-chevron-right mx-n1"></i>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
+      </section>
+    </main>
+
+    <!-- Back to top button -->
+    <a href="#top" class="btn-scroll-top" data-scroll>
+      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+      <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+    </a>
+
+
+    <!-- Vendor Scripts -->
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+    <!-- Main Theme Script -->
+    <script src="assets/js/theme.min.js"></script>
+  </body>
+</html>
+
+{% endblock %}
