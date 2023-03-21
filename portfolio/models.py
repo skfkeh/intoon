@@ -10,6 +10,7 @@ class Content(models.Model):
     content_num = models.IntegerField(default=1)
     input_img = models.ImageField(upload_to='images/', blank=True, null=True)
     content_img = models.TextField(blank=True, null=True)
+    reco_img = models.TextField(blank=True, null=True)
     like_count = models.TextField(blank=True, null=True)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(null=True)

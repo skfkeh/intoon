@@ -30,7 +30,7 @@ def index(request):
         my_dict = get_occurrence_count(test_list)
         sorted_dict = sorted(my_dict.items(), key=lambda item: item[1], reverse=True)
         hot_id_list = []
-        for i in range(4):
+        for i in range(len(sorted_dict)):
             hot_id_list.append(sorted_dict[:4][i][0])
 
         hot_toon_list = []
@@ -108,59 +108,9 @@ def lounge(request):
 
 def content_detail(request, id):
     content = Content.objects.get(id=id)
-
-    other_content_img = []
-    liked_count = []
-    total_result = list(pymongo_col_folio.find())
-    print('total_result = ', total_result)
-#     current_content_img = []
-#     current_content_img2 = []
-
-    for column in total_result:
-        if column['content_img'] is None:
-            continue
-        else:
-            if id == column['id']:
-                current_content_img = re.sub("'", "", column['content_img'][1:-1])
-                current_content_img = current_content_img.split(', ')
-            else:
-                current_content_img2 = re.sub("'", "", column['content_img'][1:-1])
-                current_content_img2 = current_content_img2.split(', ')
-                for current_content_imgs in current_content_img2:
-                    if current_content_imgs =='':
-                        pass
-                    else:
-                        other_content_img.append(current_content_imgs)
-#                 liked_count.append(column['like_count'])
-
-    # print('other_content_img:',other_content_img)
-    # print('len(other_content_img):', len(other_content_img))
-    # print("-------column 'likes_count'-------")
-    # print(liked_count)
-
-    # other_content_img_20 = other_content_img[:20]
-    # print("===================")
-    # print('str(other_content_img_20):',str(other_content_img_20))
-    # print('str(other_content_img_20):',replace(str(other_content_img_20)), '"')
-    # print(len(other_content_img_20))
-    # print(count(other_content_img_20))
-
-    total_result = list(pymongo_col_folio.find())
-    # 현재 게시물 이미지 경로
-    detail_first_img = current_content_img[0]
-    # 20개 이미지 경로
-    path_list = other_content_img[-20:-1]
-    # print(f"path_list:{path_list}")
-    recommendation_result = img_recommendation.img_recommendation_func(path_list,detail_first_img)
-    reco_link_list = []
-    # print(recommendation_result)
-    # print(type(recommendation_result))
-    # print(recommendation_result[0].content_num)
-    # for img in range(len(recommendation_result)):
-    #     reco_link_list.append(recommendation_result[img].content_num)
-
-    context = {'content': content, 'recommendation_result': recommendation_result, "reco_list": dict(zip(recommendation_result, reco_link_list))}
-    return render(request, 'portfolio/folio_content_detail.html', context) #, detail_first_img, path_list)
+    recommendation_result = content.reco_img
+    context = {'content': content, "recommendation_result":recommendation_result}
+    return render(request, 'portfolio/folio_content_detail.html', context)
 
 def content_create(request):
     current_user = User.objects.get(username=request.user)

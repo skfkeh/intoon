@@ -26,10 +26,11 @@ SECRET_KEY = 'django-insecure-v!id%avl)1)x@$pp!ttcpx+hx%mkvp9#_=-seni8^cdfb54)$v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1']#, '192.168.0.27', '192.168.0.43']
-# ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', '192.168.50.91']
+LOCALHOST = '192.168.0.11'
 
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', LOCALHOST]
+# ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', '192.168.50.91']
 
 # Application definition
 
@@ -78,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'ENFORCE_SCHEMA': True,
-        'NAME': 'project',
+        'NAME': 'intoon',
         'USER': 'root',
-        'HOST': 'localhost',
+        'HOST': LOCALHOST,
         'PORT': '27017'
     }
 }
@@ -142,7 +143,5 @@ LOGOUT_REDIRECT_URL = '/'
 # Create 이미지 Display
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-# LOCALHOST = '192.168.0.27:8000'
 
 AUTH_USER_MODEL = 'common.User'

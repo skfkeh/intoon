@@ -14,9 +14,12 @@ class img_recommendation:
     # layer = hub.KerasLayer(model_url)
     # model = tf.keras.Sequential([layer])
     def img_recommendation_func(path_list, detail_first_img):
-        print(f'path_list: {path_list}')
+        # print(f'path_list: {path_list}')
         path_list.insert(0,detail_first_img)
-        model_url = 'rec_tf_model'
+
+        ### airflow에서 recommendation 돌리기 위해선 웹 상의 model_url 필요
+        # model_url = 'rec_tf_model'
+        model_url = 'https://tfhub.dev/tensorflow/efficientnet/lite0/feature-vector/2'
         def extract(file):
             file = '/home/dhj9842/venv/mysite' + file
             file = Image.open(file).convert('L').resize(IMAGE_SHAPE)
@@ -29,11 +32,11 @@ class img_recommendation:
 
         def change(path_list):
 
-            print('path_list:',path_list)
+            # print('path_list:',path_list)
             extract_png = []
             extract_name=[]
             for png in path_list:
-                print(f"png1:{png}")
+                # print(f"png1:{png}")
                 # png = '/home/dhj9842/venv/mysite' + png
                 extract_png.append(extract(png))
                 extract_name.append(png)
@@ -46,7 +49,7 @@ class img_recommendation:
             final_list = []
             test_names = list(test.keys())
             for value in range(len(test)):
-                b = distance.cdist([list(test.values())[1]], [list(test.values())[value]], 'cosine')[0][0]
+                b = distance.cdist([extract(detail_first_img)], [list(test.values())[value]], 'cosine')[0][0]
                 cdist.append(b)
             sort_cdist = sorted(cdist)
             cdists = sort_cdist[1:5]

@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load portfolio_filter %}
+<header>
+    <style>
+.image-section {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    min-height: 50vh;
+}
+
+.second-loop-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.images-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    position: absolute;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 440px;
+    height: 440px;
+}
+
+.image-container img {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.item {
+    position: absolute;
+    color: white;
+}
+
+.mt-5 {
+    margin-top:5rem !important;
+}
+
+.img_button {
+	position:absolute;
+	height:100%;
+	top:0;
+	border:none;
+	padding:20px;
+	color:#000;
+	font-weight:800;
+	font-size:24px;
+	opacity:0.4;
+}
+#img_prev {
+	left:0;
+}
+#img_next {
+	right:0;
+}
+.img_button:hover {
+	background-color:#222;
+	color:#fff;
+	opacity:0.6;
+	cursor:pointer;
+}
+.img_button:focus {
+	outline:0;
+}
+
+
+
+
+
+    </style>
+
+
+</header>
+<div class="container mt-5 my-3">
+
+    <!-- subject -->
+    <h2 class="border-bottom py-2">{{ content.subject }}</h2>
+
+
+    <div class="row align-items-center mt-2 mt-md-0 pt-5 pt-md-4 pt-lg-0 pb-md-3 pb-lg-5 border-bottom py-2">
+        <!-- image -->
+        <section class="image-section">
+            <div class="col-md-6 col-lg-5 offset-xl-1 mb-2 mb-md-0 pb-4 pb-md-0">
+                <div class="images-wrapper image-container" id="images_test">
+                    {% if content.content_img %}
+                    {% for i in content.content_img|test %}
+                    <img src="{{ i }}" alt="..."/>
+                    {% endfor %}
+                    {% else %}
+                    No Image
+                    {% endif %}
+                    <button class="img_button" id="img_prev">&lang;</button>
+                    <button class="img_button" id="img_next">&rang;</button>
+                    <script src="/static/js/imageview.js"></script>
+                </div>
+            </div>
+
+            <!-- content -->
+            <div class="col-md-6 col-xl-5 offset-lg-1">
+                <div class="card my-3">
+                    <div class="card-body">
+                        <div class="card-text" style="white-space: pre-line;">{{ content.content_for_posting }}</div>
+                        <div class="d-flex justify-content-end">
+                            <div class="badge bg-light text-dark p-2">
+                                {{ content.create_date }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Post comments -->
+    <section class="row align-items-center mt-2 mt-md-0 pt-5 pt-md-4 pt-lg-0 pb-md-3 pb-lg-5 border-bottom py-2">
+        <h2 class="h1 text-center text-sm-start"> {{ content.answer_set.count }} comments</h2>
+
+        <!-- Comment -->
+        <div class="pb-3">
+            <div class="card border-0 overflow-hidden mb-4">
+                <div class="position-relative bg-repeat-0 bg-size-cover">
+                    {% if content.answer_set.all %}
+                    {% for answer in content.answer_set.all %}
+                    <div class="d-flex align-items-center me-3">
+                        <img src="/static/img/avatar/02.jpg" class="rounded-circle" width="48" alt="Avatar">
+                        <div class="ps-3">
+                            <h6 class="fw-semibold mb-0">{{ answer.username }}</h6>
+                            <span class="fs-sm text-muted">{{ answer.create_date }}</span>
+                            <p class="mb-0 pb-2">{{ answer.context }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h6 class="fw-semibold mb-0">No Comment</h6>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+        <!-- 비로그인 시에는 댓글작성 기능을 비활성화한다 -->
+        <div class="py-4">
+            <form action="{% url 'portfolio:answer_create' content.id %}" method="post">
+                {% csrf_token %}
+                <div class="card p-md-5 p-4 border-0 bg-secondary">
+                    <div class="card-body w-100 mx-auto px-0" style="max-width: 746px;">
+                        <label for="context" class="form-label fs-base">Comment</label>
+                        <textarea name="context" id="context" class="form-control form-control-lg" rows="3"
+                                  placeholder="댓글을 써주세요..." required></textarea>
+                        <button type="submit" class="btn btn-lg btn-primary w-sm-auto w-100 mt-2">Post comment</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </section>
+
+
+    <!-- 추천알고리즘 넣기 -->
+    <!-- {{content.content_img}} -->
+    <!-- {{all_reco_img1}} -->
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+
+    </div>
+
+    {% endblock %}
