@@ -61,8 +61,6 @@ def reco_imgpath_insert():
     total_result = list(pymongo_col_folio.find())
 
     for column in total_result:
-        print("000000000000000000000000000000000000")
-        print(f"column['id']: {column['id']}")
         if column['content_img'] is None:
             continue
         else:
