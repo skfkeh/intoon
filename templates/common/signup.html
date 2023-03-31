@@ -14,54 +14,54 @@
                     {% csrf_token %}
                     {% include "form_errors.html" %}
                     <div class="row">
-<div class="col-sm-6">
-    <div class="position-relative mb-4">
-        <label for="name" class="form-label fs-base">Name</label>
-        <input type="text" class="form-control form-control-lg" name="username" id="username" required
-                value="{{ form.username.value|default_if_none:'' }}">
-        <div class="invalid-feedback position-absolute start-0 top-100">Please enter your name!</div>
-    </div>
-</div>
-<div class="col-sm-6">
-    <div class="position-relative mb-4">
-        <label for="email" class="form-label fs-base">Email</label>
-        <input type="text" class="form-control form-control-lg" name="email" id="email" required
-                value="{{ form.email.value|default_if_none:'' }}">
-        <div class="invalid-feedback position-absolute start-0 top-100">Please enter a valid email address!</div>
-    </div>
-</div>
-<div class="col-12 mb-4">
-    <label for="password" class="form-label fs-base">Password</label>
-    <div class="password-toggle">
-        <input type="password" class="form-control form-control-lg" name="password1" id="password1" required
-                value="{{ form.password1.value|default_if_none:'' }}">
-        <label class="password-toggle-btn" aria-label="Show/hide password">
-            <input class="password-toggle-check" type="checkbox">
-            <span class="password-toggle-indicator"></span>
-        </label>
-        <div class="invalid-feedback position-absolute start-0 top-100">Please enter a password!</div>
-    </div>
-</div>
-<div class="col-12 mb-4">
-    <label for="password-confirm" class="form-label fs-base">Confirm password</label>
-    <div class="password-toggle">
-        <input type="password" class="form-control form-control-lg" name="password2" id="password2" required
-                value="{{ form.password2.value|default_if_none:'' }}">
-        <label class="password-toggle-btn" aria-label="Show/hide password">
-            <input class="password-toggle-check" type="checkbox">
-            <span class="password-toggle-indicator"></span>
-        </label>
-        <div class="invalid-feedback position-absolute start-0 top-100">Please enter a password!</div>
-    </div>
-</div>
+                    <div class="col-sm-6">
+                        <div class="position-relative mb-4">
+                            <label for="name" class="form-label fs-base">Name</label>
+                            <input type="text" class="form-control form-control-lg" name="username" id="username" required
+                                   value="{{ form.username.value|default_if_none:'' }}">
+                            <div class="invalid-feedback position-absolute start-0 top-100">Please enter your name!</div>
+                        </div>
                     </div>
-<div class="mb-4">
-    <div class="form-check">
-        <input type="checkbox" id="terms" class="form-check-input">
-        <label for="terms" class="form-check-label fs-base">I agree to <a href="#">Terms &amp; Conditions</a></label>
-    </div>
-</div>
-<button type="submit" class="btn btn-primary shadow-primary btn-lg w-100">Sign up</button>
+                    <div class="col-sm-6">
+                        <div class="position-relative mb-4">
+                            <label for="email" class="form-label fs-base">Email</label>
+                            <input type="text" class="form-control form-control-lg" name="email" id="email" required
+                                   value="{{ form.email.value|default_if_none:'' }}">
+                            <div class="invalid-feedback position-absolute start-0 top-100">Please enter a valid email address!</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <label for="password" class="form-label fs-base">Password</label>
+                        <div class="password-toggle">
+                            <input type="password" class="form-control form-control-lg" name="password1" id="password1" required
+                                   value="{{ form.password1.value|default_if_none:'' }}">
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <input class="password-toggle-check" type="checkbox">
+                                <span class="password-toggle-indicator"></span>
+                            </label>
+                            <div class="invalid-feedback position-absolute start-0 top-100">Please enter a password!</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <label for="password-confirm" class="form-label fs-base">Confirm password</label>
+                        <div class="password-toggle">
+                            <input type="password" class="form-control form-control-lg" name="password2" id="password2" required
+                                   value="{{ form.password2.value|default_if_none:'' }}">
+                            <label class="password-toggle-btn" aria-label="Show/hide password">
+                                <input class="password-toggle-check" type="checkbox">
+                                <span class="password-toggle-indicator"></span>
+                            </label>
+                            <div class="invalid-feedback position-absolute start-0 top-100">Please enter a password!</div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input type="checkbox" id="terms" class="form-check-input">
+                            <label for="terms" class="form-check-label fs-base">I agree to <a href="#">Terms &amp; Conditions</a></label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary shadow-primary btn-lg w-100">Sign up</button>
                 </form>
                 <!-- <hr class="my-4">
                 <h6 class="text-center mb-4">Or sign up with your social network</h6>

@@ -26,10 +26,10 @@ SECRET_KEY = 'django-insecure-v!id%avl)1)x@$pp!ttcpx+hx%mkvp9#_=-seni8^cdfb54)$v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-LOCALHOST = '192.168.0.11'
+LOCALHOST = '192.168.0.36'
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', LOCALHOST]
+ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', LOCALHOST, '192.168.0.24']
 # ALLOWED_HOSTS = ['0.0.0.0:8000', 'localhost', '127.0.0.1', '192.168.50.91']
 
 # Application definition
@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'ENFORCE_SCHEMA': True,
-        'NAME': 'intoon',
+        'NAME': 'intoon_fin',
         'USER': 'root',
         'HOST': LOCALHOST,
         'PORT': '27017'

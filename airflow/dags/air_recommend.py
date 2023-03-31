@@ -14,7 +14,7 @@ sys.path.append('/home/dhj9842/venv/mysite/portfolio')
 from recommendation import img_recommendation
 
 pymongo_connect = MongoClient("mongodb://localhost:27017")
-pymongo_db = pymongo_connect["intoon"]
+pymongo_db = pymongo_connect["intoon_fin"]
 pymongo_col_folio = pymongo_db["portfolio_content"]
 
 
@@ -25,7 +25,7 @@ default_args = {
 
 def reco_connect(id):
     try:
-        db = pymongo_connect['intoon']
+        db = pymongo_connect['intoon_fin']
         current_content_img = []
         other_content_img = []
         recommendation_result = []
@@ -61,6 +61,8 @@ def reco_imgpath_insert():
     total_result = list(pymongo_col_folio.find())
 
     for column in total_result:
+        print("000000000000000000000000000000000000")
+        print(f"column['id']: {column['id']}")
         if column['content_img'] is None:
             continue
         else:

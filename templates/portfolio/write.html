@@ -31,16 +31,16 @@
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">게시글 내용</label>
-            <textarea placeholder="텍스트를 입력해 주세요" class="form-control" name="content_for_posting" id="content_for_posting" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
+            <textarea placeholder="게시글 내용을 입력해 주세요" class="form-control" name="content_for_posting" id="content_for_posting" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
         <br>
         <div class="mb-3">
             <label for="content" class="form-label">모델 입력 내용</label>
-            <textarea placeholder="텍스트를 입력해 주세요" class="form-control" name="content" id="content" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
+            <textarea placeholder="생성할 이미지를 묘사해 주세요" class="form-control" name="content" id="content" rows="10" required>{{ form.content.value|default_if_none:'' }}</textarea>
         </div>
 
         <div class="mb-3">
-            <label for="input_img" class="form-label">이미지 선택</label><br>
+            <label for="input_img" class="form-label">이미지 선택(생성을 원하는 스타일이 있다면, 이미지 초안을 넣어주세요!!)</label><br>
             <input type="file" id="input_img" name="input_img" accept="image/png, image/jpeg">
         </div>
         <!--        <button type="submit" onclick="location.ref='https://192.168.0.27:8000/portfolio/loading3'" class="btn btn-primary" style="margin:auto, display:block">Write</button>-->

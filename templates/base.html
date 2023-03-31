@@ -13,12 +13,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/head_logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/head_logo.png">
     <link rel="manifest" href="/static/favicon/site.webmanifest">
     <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#6366f1">
-    <link rel="shortcut icon" href="/static/favicon/favicon.ico">
+    <!-- <link rel="shortcut icon" href="/static/favicon/favicon.ico"> -->
+    <link rel="shortcut icon" href="/static/img/head_logo.png">
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
@@ -148,11 +151,11 @@
 
     {% block content %}
 
-    {% include "main/hero.html" %}
-    {% include "main/main.html" %}
-    {% include "main/portfolio_list.html" %}
-    {% include "main/more_feature.html" %}
-        {% include "main/stack.html" %}
+    {% include "main/hero.html" %}           <!-- 배너 이미지 -->
+    {% include "main/main.html" %}           <!-- main skill -->
+    {% include "main/portfolio_list.html" %} <!-- Hot TOONS -->
+    {% include "main/more_feature.html" %}   <!-- about main skill -->
+    {% include "main/stack.html" %}          <!-- 사용된 기술스택 -->
     {% include "main/footer.html" %}
     
     {% endblock %}

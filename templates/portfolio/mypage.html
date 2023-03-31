@@ -8,13 +8,18 @@
 <!-- Testimonials (Slider) -->
 {% load portfolio_filter %}
 
+<style>
+    a {text-decoration: none !important; color:#111;}
+    a:hover {text-decoration: none !important; color:#111;}
+</style>
+
 <section class="container pb-5 mb-2 mb-md-4 mb-xl-5">
     <div class="row">
         <!-- Photo & Email -->
         <div class="col-md-5 mb-4 mb-md-0">
             <div class="card justify-content-center bg-light h-100 p-4 p-lg-5">
                 <div class="card card-body card-hover card-center bg-light border-0 text-center mx-2">
-                    <img src="/static/img/team/09.jpg" class="d-block rounded-circle mx-auto mb-3" width="162"
+                    <img src="/static/img/team/intoonteam.png" class="d-block rounded-circle mx-auto mb-3" width="162"
                          alt="Ralph Edwards">
                     <h5 class="fw-medium fs-lg mb-1">{{ user.username }}</h5>
                     <p class="fs-sm mb-3">{{ user.email }}</p>

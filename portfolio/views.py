@@ -23,34 +23,34 @@ def index(request):
     try:
         answer_object = Answer.objects.filter()
 
-        print("len(answer_object):",len(answer_object))
         test_list = []
         for object in range(len(answer_object)):
             test_list.append(answer_object[object].content_id)
         my_dict = get_occurrence_count(test_list)
         sorted_dict = sorted(my_dict.items(), key=lambda item: item[1], reverse=True)
+        sorted_dict = sorted_dict[:4]
         hot_id_list = []
         for i in range(len(sorted_dict)):
             hot_id_list.append(sorted_dict[:4][i][0])
-
         hot_toon_list = []
         hot_toon_img_list=[]
         for hot_id in hot_id_list:
             hot_toon = Content.objects.get(id=hot_id)
             hot_toon_img = hot_toon.content_img.split(',')[0][2:-1]
-            # print('asdfasdf: ',hot_toon_img,'\n')
             hot_toon_list.append(hot_toon)
             hot_toon_img_list.append(hot_toon_img)
         # print('hot_toon_img_list:',hot_toon_img_list)
         hot_final_dict = zip(hot_id_list,hot_toon_list,hot_toon_img_list)
         hot_final_list = {"hot_final_dict":hot_final_dict}
+
+        # print("hot_final_list:", hot_final_list)
         return render(request, 'base.html',hot_final_list)
     except:
         return render(request, 'base.html')
 
 def get_occurrence_count(my_list):
   new_list = {}
-  for i in my_list:
+  for i in my_list: 
     try: new_list[i] += 1
     except: new_list[i] = 1
   return(new_list)
@@ -62,6 +62,7 @@ def loading3(request):
     return render(request, 'portfolio/loading3.html')
 
 def mypage(request):
+    ## 현재 로그인한 계정의 게시글만 보이도록 한정
     current_user = User.objects.get(username=request.user)
     current_content = Content.objects.filter(username=current_user)
 
@@ -73,13 +74,14 @@ def mypage(request):
             index = len(current_content[img].content_img)
         else:
             index = current_content[img].content_img[1:-1].find(',')
-        # print("=================")
         content_first_img = current_content[img].content_img[2:index]
-        content_img_list.append(content_first_img)
-        content_link_list.append(current_content[img].content_num)
-
-    context = {"content_list": dict(zip(content_img_list, content_link_list)),"content_len":len(dict(zip(content_img_list, content_link_list)))}
-    # context = {"content_list": current_content}
+        content_img_list.append(content_first_img)          ## 이미지 경로값
+        content_link_list.append(current_content[img].id)   ## 이미지 id값
+    
+    ## 최근에 작성한 글이 위에서 보이도록 reverse
+    content_img_list.sort(reverse=True)
+    content_link_list.sort(reverse=True)
+    context = {"content_list": dict(zip(content_img_list, content_link_list)), "content_len":len(dict(zip(content_img_list, content_link_list)))}
     return render(request, 'portfolio/mypage.html', context)
 
 def write_form(request):
@@ -100,7 +102,10 @@ def lounge(request):
         content_first_img = lounge_content[img].content_img[2:index]
         lounge_img_list.append(content_first_img)
         lounge_link_list.append(lounge_content[img].id)
-        print("lounge_link_list:", lounge_link_list)
+
+    ## 최신글이 최상단에 나오도록 변경
+    lounge_img_list = reversed(lounge_img_list)
+    lounge_link_list = reversed(lounge_link_list)
 
     context = {"lounge_list": dict(zip(lounge_img_list, lounge_link_list))}
 

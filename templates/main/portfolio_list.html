@@ -14,15 +14,14 @@
 
 <!--원래 user의 id를 통해 조회해 오지만, Mongo에서 쿼리를 통해 가져와야 할 것 같음-->
 <!-- Portfolio list -->
-<section class="container pb-2 pb-lg-3">
+<section class="container pb-2 pb-lg-3" id="hot_toons">
     <h2 class="h1 text-center pt-1 pt-md-3 pt-lg-4 pb-3 pb-md-4 mb-0 mb-lg-3">Hot TOONS</h2>
-    aaa : {{hot_final_dict}}
     {% if hot_final_dict %}
     {% for hot_id,hot_query,hot_toon_img in hot_final_dict %}
     <div class="row pb-5 mb-md-4 mb-lg-5" id="hot">
         <div class="rellax col-md-5 pb-1 mb-3 pb-md-0 mb-md-0" data-rellax-percentage="0.5" data-rellax-speed="0.8"
              data-disable-parallax-down="md">
-            <a href="portfolio-single-project.html">
+            <a href="/portfolio/content/detail/{{hot_id}}">
                 <img src="{{hot_toon_img}}" class="rounded-3" width="600" alt="{{hot_query.content_img}}" style="width: 350px"> <!--이미지-->
             </a>
         </div>
@@ -31,8 +30,8 @@
             <div class="ps-md-4 ms-md-2">
                 <div class="fs-sm text-muted mb-1">{{hot_query.create_date}}</div>
                 <h2 class="h3">{{hot_query.subject}}</h2>
-                <a href="#" class="d-table badge bg-faded-primary text-primary fs-sm mb-3">{{hot_query.username}}</a>
-                <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">{{hot_query.content}}</p>
+                <p class="d-table badge bg-faded-primary text-primary fs-sm mb-3">{{hot_query.username}}</p>
+                <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">{{hot_query.content_for_posting}}</p>
                 <a href="/portfolio/content/detail/{{hot_id}}" class="btn btn-outline-primary">게시물로 이동하기</a>
             </div>
         </div>

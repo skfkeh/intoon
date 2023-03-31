@@ -1,0 +1,76 @@
+<style>
+#feature_img { height:271px; width: 271px; border-radius: 20px; }
+
+</style>
+<!-- Main features (Slider on narrow scrreens) -->
+<section class="container pt-5">
+<div class="swiper mt-n3 mt-md-0 pt-md-4 pt-lg-5 mx-n2" data-swiper-options='{
+    "slidesPerView": 1,
+    "spaceBetween": 8,
+    "pagination": {
+    "el": ".swiper-pagination",
+    "clickable": true
+    },
+    "navigation": {
+    "prevEl": "#prev-news",
+    "nextEl": "#next-news"
+    },
+    "breakpoints": {
+    "500": {
+        "slidesPerView": 2
+    },
+    "700": {
+        "slidesPerView": 3
+    },
+    "1000": {
+        "slidesPerView": 4
+    }
+    }
+}'>
+    <div class="swiper-wrapper">
+
+    <!-- Item -->
+        <div class="swiper-slide h-auto pb-3" >
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+            <!-- <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="https://assets1.lottiefiles.com/packages/lf20_5sHgmi0GvN.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player>
+            <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="https://assets1.lottiefiles.com/packages/lf20_5sHgmi0GvN.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player> -->
+            <img id="feature_img" class="d-dark-mode-none mx-auto mt-4 mb-2" src="/static/img/more_feature/version2/bananelemons.gif" loop=infinite />
+            <div class="card-body fs-lg fw-semibold text-center"><a href="#hot_toons" style="text-decoration-line: none;">Stable Diffusion</a></div>
+            </div>
+        </div>
+
+        <!-- Item -->
+        <div class="swiper-slide h-auto pb-3">
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+            <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="https://assets5.lottiefiles.com/packages/lf20_hCbWxJeo9Q.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player>
+            <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="https://assets5.lottiefiles.com/packages/lf20_hCbWxJeo9Q.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player>
+            <div class="card-body fs-lg fw-semibold text-center"><a href="#directions" style="text-decoration-line: none;">Recommendation</a></div>
+            </div>
+        </div>
+
+        <!-- Item -->
+        <div class="swiper-slide h-auto pb-3">
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+            <!-- <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="https://assets8.lottiefiles.com/packages/lf20_qhrndegx.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player>
+            <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="https://assets8.lottiefiles.com/packages/lf20_qhrndegx.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player> -->
+            <img id="feature_img" class="d-dark-mode-none mx-auto mt-4 mb-2" src="/static/img/more_feature/version2/website.gif"/>
+            <!-- <div class="tenor-gif-embed" data-postid="19512437" data-share-method="host" data-aspect-ratio="1.33333" data-width="100%"><a href="https://tenor.com/search/website-gifs">Website GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+            <div class="card-body fs-lg fw-semibold text-center"><a href="#directions" style="text-decoration-line: none;">Web Full Stack</a></div>
+            </div>
+        </div>
+
+        <!-- Item -->
+        <div class="swiper-slide h-auto pb-3">
+            <div class="card card-hover bg-light border-0 animation-on-hover h-100 mx-2">
+            <!-- <lottie-player class="d-dark-mode-none mx-auto mt-4 mb-2" src="https://assets3.lottiefiles.com/packages/lf20_p4t6YB.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player>
+            <lottie-player class="d-none d-dark-mode-block mx-auto mt-4 mb-2" src="https://assets3.lottiefiles.com/packages/lf20_p4t6YB.json" background="transparent" speed="1.25" loop style="width: 180px;"></lottie-player> -->
+            <img id="feature_img" class="d-dark-mode-none mx-auto mt-4 mb-2" src="/static/img/more_feature/version2/airflow.gif" loop=infinite/>
+            <div class="card-body fs-lg fw-semibold text-center"><a href="#directions" style="text-decoration-line: none;">Data Engineering</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination (bullets) -->
+    <div class="swiper-pagination position-relative bottom-0 mt-2"></div>
+</div>
+</section>
